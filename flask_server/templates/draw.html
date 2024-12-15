@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+    <script src="https://unpkg.com/jspsych@7.3.4"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-sketchpad@1.0.4"></script>
+  </head>
+  <body></body>
+  <script>
+    const jsPsych = initJsPsych();
+
+    function on_finish(data) {
+        const u = "{{url_for('show', data='')}}";
+        var d = data.png
+        d = d.split(",")[1]
+        d = d.replaceAll("/", "_")
+        d = d.replaceAll("+", "-")
+        d = d.replaceAll("=", "#"); 
+        window.location.replace(u.concat(d));
+    }
+
+    const trial = {
+      type: jsPsychSketchpad,
+      prompt: '<h2>Draw a single digit in the box</h2>',
+      prompt_location: 'abovecanvas',
+      canvas_width: 150,
+      canvas_height: 150,
+      stroke_width: 10,
+      canvas_border_width: 2,
+      save_strokes: false,
+      on_finish: on_finish
+    }
+
+    jsPsych.run([trial]);
+</script>
+</html>

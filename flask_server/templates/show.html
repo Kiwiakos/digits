@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+    </head>
+    <!--
+    <p><img src="{{ url_for('static', filename='img.png') }}"></p>
+    <p><img src="{{ url_for('static', filename='img28.png') }}"></p>
+    <p><img src="{{ url_for('static', filename='bar.png') }}"></p>
+    <p><a href="{{ url_for('draw') }}">Back to input page</a></p>
+    -->
+
+    <h2><a href="{{ url_for('draw') }}">Back to input page</a></h2>
+
+    <hr>
+    <h2>Probability of digit</h2>
+    <p><img src="{{ url_for('static', filename='bar.png') }}"></p>
+
+    <hr>
+    <h2>Input Image</h2>
+    <p><img src="{{ url_for('static', filename='img.png') }}"></p>
+    <h2>Input Image as 28x28</h2>
+    <p><img src="{{ url_for('static', filename='lay0.png') }}"></p>
+    <hr>
+
+    <h2>Features detected</h2>
+    <table>
+        <tr>
+            <th>5x5 feature</th>
+            <th>Detected</th>
+        </tr>
+        {% for k in range(8) %}
+        <tr>
+            <th><img src="{{ url_for('static', filename='lay0_weight' + k|string + '.png') }}"></th>
+            <th><img src="{{ url_for('static', filename='lay0_out' + k|string + '.png') }}"></th>
+        </tr>
+        {% endfor %}
+    </table>
+
+</html>
